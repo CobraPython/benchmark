@@ -1,36 +1,65 @@
 import numpy as np 
 import time
+import csv
+import numexpr as ne 
 
-N=np.array([1.00000000e+06, 1.17210230e+06, 1.37382380e+06, 1.61026203e+06,
-       1.88739182e+06, 2.21221629e+06, 2.59294380e+06, 3.03919538e+06,
-       3.56224789e+06, 4.17531894e+06, 4.89390092e+06, 5.73615251e+06,
-       6.72335754e+06, 7.88046282e+06, 9.23670857e+06, 1.08263673e+07,
-       1.26896100e+07, 1.48735211e+07, 1.74332882e+07, 2.04335972e+07,
-       2.39502662e+07, 2.80721620e+07, 3.29034456e+07, 3.85662042e+07,
-       4.52035366e+07, 5.29831691e+07, 6.21016942e+07, 7.27895384e+07,
-       8.53167852e+07, 1.00000000e+08])
+ne.set_num_threads(8) 
+
+N=np.array([1.00000000e+05, 1.43844989e+05, 2.06913808e+05, 2.97635144e+05,
+       4.28133240e+05, 6.15848211e+05, 8.85866790e+05, 1.27427499e+06,
+       1.83298071e+06, 2.63665090e+06, 3.79269019e+06, 5.45559478e+06,
+       7.84759970e+06, 1.12883789e+07, 1.62377674e+07, 2.33572147e+07,
+       3.35981829e+07, 4.83293024e+07, 6.95192796e+07, 1.00000000e+08],dtype=float)
+N=np.around(N,0)
+
 t=[]
-N_rep=100;
+t1=[]
+N_rep=10;
 
 
-f = open ('tiemposNPYdotprod.csv','wb')
+f=open('tiemposNPYdotprod.csv','w',newline="")
+wr=csv.writer(f,delimiter=',')
+wr.writerow(["# N elementos procesados", "Tiempo Promedio[ms]", "STD Tiempo [ms]", " #100 rep"])
 
-headers = ('N elementos procesados','Tiempo Promedio[ms]','STD Tiempo [ms]')
+f1=open('tiemposNUMERdotprod_mcore.csv','w',newline="")
+wr1=csv.writer(f1,delimiter=',')
+wr1.writerow(["# N elementos procesados", "Tiempo Promedio[ms]", "STD Tiempo [ms]", " #100 rep"])
+
+
+
 #Creamos el vector con los N elementos
 for i in N:
-	for j in range(0,N_rep-1):
-		vectorA=np.random.rand(int(i))
-		vectorB=np.random.rand(int(i))
+ 	for j in range(0,N_rep):
+ 		vectorA=np.random.rand(int(i))
+ 		vectorB=np.random.rand(int(i))
 
-		inicio = time.time()
-		vectorC=np.dot(vectorA,vectorB)
-		fin = time.time()
-		t.append(inicio-fin)
+ 		inicio = time.time_ns()
+ 		vectorC=np.dot(vectorA,vectorB)
+ 		fin = time.time_ns()
+ 		t.append(fin-inicio)
 
-	temp=np.array(t)
-	
-	tiempo_ms=temp.mean()
-	var=temp.var()
-	b=55
-	print('%d'%b)
-	f.write("%d"%b,fieldnames=headers)
+ 		vectorA1=np.random.rand(int(i))
+ 		vectorB1=np.random.rand(int(i))
+ 		
+ 
+
+ 		inicio1 = time.time_ns()
+ 		aux = ne.evaluate('vectorA1*vectorB1')
+ 		aux1 = ne.evaluate('sum(aux)')
+ 		fin1 = time.time_ns()
+
+ 		t1.append(fin1-inicio1)
+
+
+ 	temp=np.array(t)/1000000
+ 	tmp_ms=temp.mean()
+ 	var=temp.var()
+ 	wr.writerow(np.array([round(i),round(tmp_ms,5),round(var,5)]))
+
+ 	temp1=np.array(t1)/1000000
+ 	tmp1_ms=temp1.mean()
+ 	var1=temp1.var()
+ 	wr1.writerow(np.array([round(i),round(tmp1_ms,5),round(var1,5)]))
+
+f.close()
+f1.close()
