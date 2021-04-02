@@ -53,12 +53,12 @@ for i in N:
 
  	temp=np.array(t)/1000000
  	tmp_ms=temp.mean()
- 	var=temp.var()
+ 	var=np.sqrt(temp.var()/(N_rep-1))
  	wr.writerow(np.array([round(i),round(tmp_ms,5),round(var,5)]))
 
  	temp1=np.array(t1)/1000000
  	tmp1_ms=temp1.mean()
- 	var1=temp1.var()
+ 	var1=np.sqrt(temp1.var()/(N_rep-1))
  	wr1.writerow(np.array([round(i),round(tmp1_ms,5),round(var1,5)]))
 
 f.close()
