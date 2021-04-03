@@ -3,7 +3,7 @@ import time
 import csv
 import numexpr as ne 
 
-ne.set_num_threads(4) 
+ne.set_num_threads(8) 
 
 N=np.array([1.00000000e+05, 1.43844989e+05, 2.06913808e+05, 2.97635144e+05,
        4.28133240e+05, 6.15848211e+05, 8.85866790e+05, 1.27427499e+06,
@@ -17,11 +17,11 @@ t1=[]
 N_rep=10;
 
 
-f=open('unix_tiemposNPYdotprod.csv','w')
+f=open('tiemposNPYdotprod.csv','w')
 wr=csv.writer(f,delimiter=',')
 wr.writerow(["# N elementos procesados", "Tiempo Promedio[ms]", "STD Tiempo [ms]", " #100 rep"])
 
-f1=open('unix_tiemposNUMERdotprod_mcore.csv','w')
+f1=open('tiemposNUMERdotprod_mcore.csv','w')
 wr1=csv.writer(f1,delimiter=',')
 wr1.writerow(["# N elementos procesados", "Tiempo Promedio[ms]", "STD Tiempo [ms]", " #100 rep"])
 

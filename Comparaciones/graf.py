@@ -3,10 +3,10 @@ import pandas as pd
 
 import matplotlib.pyplot as plt
 
-df_c = pd.read_csv('unix_tiemposCdotprod.csv', sep=',')
-df_npy = pd.read_csv('unix_tiemposNPYdotprod.csv', sep=',')
-df_Nsc = pd.read_csv('unix_tiemposNUMERdotprod_score.csv', sep=',')
-df_Nmc = pd.read_csv('unix_tiemposNUMERdotprod_mcore.csv', sep=',')
+df_c = pd.read_csv('tiemposCdotprod.csv', sep=',')
+df_npy = pd.read_csv('tiemposNPYdotprod.csv', sep=',')
+df_Nsc = pd.read_csv('tiemposNUMERdotprod_score.csv', sep=',')
+df_Nmc = pd.read_csv('tiemposNUMERdotprod_mcore.csv', sep=',')
 
 
 
@@ -45,11 +45,7 @@ plt.errorbar(N, x_ne_mc, yerr=x_std, xerr=0, fmt=".",label='en Numexpr 8 core')
 plt.legend(loc='upper left')
 plt.xscale('log')
 plt.grid()
-<<<<<<< HEAD
 plt.title('Comparación: Producto Escalar de dos vectores \n en un sistema Windows 10 Intel i7700 HQ')
-=======
-plt.title('Comparacion: Producto Escalar de dos vectores \n En una Rpi3 bajo Debian')
->>>>>>> ecdded485d1f773be7e4614fcb876d69595046b3
 plt.xlabel('Cantidad N de elementos de los vectores')
 plt.ylabel('Tiempo de procesamiento en milisegundos')
 plt.savefig("BenchmarkDotprod.png")
