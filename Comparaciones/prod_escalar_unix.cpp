@@ -63,7 +63,7 @@ int main()
 {
 
 
-fp = fopen ( "tiemposCdotprod.csv", "w" );        
+fp = fopen ( "unix_tiemposCdotprod.csv", "w" );        
 
 //Ahora se procede a crear los vectores que tendran distinto tamanho 
 //con numeros generados aleatoreamente. Para lo cual vemos necesario
