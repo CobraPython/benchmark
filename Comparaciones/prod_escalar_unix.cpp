@@ -63,7 +63,7 @@ int main()
 {
 
 
-fp = fopen ( "tiemposCdotprod.csv", "w" );        
+fp = fopen ( "unix_tiemposCdotprod.csv", "w" );        
 
 //Ahora se procede a crear los vectores que tendran distinto tamanho 
 //con numeros generados aleatoreamente. Para lo cual vemos necesario
@@ -117,7 +117,7 @@ clock_gettime(CLOCK_REALTIME, &begin);
  long nanoseconds = end.tv_nsec - begin.tv_nsec;
  double elapsed = 1000*seconds + nanoseconds*1e-6;
     
- temp[k]= elapsed
+ temp[k]= elapsed;
  }
 
 	free (vectorA);
