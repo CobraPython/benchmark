@@ -117,7 +117,7 @@ clock_gettime(CLOCK_REALTIME, &begin);
  long nanoseconds = end.tv_nsec - begin.tv_nsec;
  double elapsed = 1000*seconds + nanoseconds*1e-6;
     
- temp[k]= elapsed
+ temp[k]= elapsed;
  }
 
 	free (vectorA);
