@@ -10,13 +10,13 @@
 
 
 
-double N[]={1,2,3,5,8,9,10,11};  //N representa la dimension nxn de una matriz cuadrada
+int N[]={1,2,3,5,8,9,10,11};  //N representa la dimension nxn de una matriz cuadrada
 
 
-int N_rep=100; //repeticiones para tener la estadística
+int N_rep=10; //repeticiones para tener la estadística
 //    |
 //    | 
-double temp[100]; //Un vector que almacena los tiempos de cada repetición 
+double temp[10]; //Un vector que almacena los tiempos de cada repetición 
 //para luego obtener el promedio y la varianza
 
 //Se busca cuidar la gestión de memoria, por lo cual se necesita reservar 
@@ -85,11 +85,11 @@ matrizC[i] = (int *) malloc (N[k]*sizeof(int));
 
 
 srand(time(NULL));
-int i,j;
-for(i=0;i<N[k];i++){
-for(j=0;j<N[k];j++){
-matrizA[i][j]= rand();
-matrizB[i][j]= rand();
+
+for(int i=0;i<N[k];i++){
+for(int j=0;j<N[k];j++){
+matrizA[i][j]= rand()%100;
+matrizB[i][j]= rand()%100;
 }
 }
 

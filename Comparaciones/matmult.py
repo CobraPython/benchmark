@@ -2,13 +2,13 @@ import numpy as np
 import time
 import csv
 
-N=np.array([10,20,30,50,100,200,500,1000,1200,1500,2000])
+N=np.array([10,20,30,50,100,200,500,1000,1200,1500])
 
 t=[]
 N_rep=5;
 
 
-f=open('tiemposmatmultPY.csv','w')
+f=open('tiemposmatmultPY.csv','w',newline="")
 wr=csv.writer(f,delimiter=',')
 wr.writerow(["# N elementos procesados", "Tiempo Promedio[ms]", "STD Tiempo [ms]", " #100 rep"])
 

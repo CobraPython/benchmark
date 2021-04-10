@@ -19,7 +19,7 @@ x_stdpy=df_npy.iloc[:,2].values
 
 plt.errorbar(N, x_c, yerr=x_std, xerr=0, fmt=".",label='en C')
 
-plt.errorbar(N, x_npy, yerr=x_std, xerr=0, fmt=".",label='en Numpy')
+plt.errorbar(N, x_npy, yerr=x_stdpy, xerr=0, fmt=".",label='en Numpy')
 plt.legend(loc='upper left')
 plt.xscale('log')
 plt.grid()
