@@ -3,8 +3,8 @@ import pandas as pd
 
 import matplotlib.pyplot as plt
 
-df_c = pd.read_csv('tiemposmatmult.csv', sep=',')
-df_npy = pd.read_csv('tiemposmatmultPY.csv', sep=',')
+df_c = pd.read_csv('unix_tiemposmatmult.csv', sep=',')
+df_npy = pd.read_csv('unix_tiemposmatmultPY.csv', sep=',')
 
 
 N = df_c.iloc[:,0].values
@@ -26,7 +26,7 @@ plt.grid()
 plt.title('Comparación: Producto Matricial Bidimensional \n en un sistema Windows 10 Intel i7700 HQ')
 plt.xlabel('Cantidad N de elementos nxn')
 plt.ylabel('Tiempo de procesamiento en milisegundos')
-plt.savefig("Benchmarkmatmult.png")
+plt.savefig("unix_Benchmarkmatmult.png")
 
 
 
