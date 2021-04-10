@@ -10,7 +10,7 @@
 
 
 
-double N[]={10,20,30,50,100,200,500,1000,1200,1500,2000};  //N representa la dimension nxn de una matriz cuadrada
+double N[]={1,2,3,5,8,9,10,11};  //N representa la dimension nxn de una matriz cuadrada
 
 
 int N_rep=100; //repeticiones para tener la estadística
@@ -62,7 +62,7 @@ int main()
 fp = fopen ( "tiemposmatmult.csv", "w" );    
 fprintf(fp,"# N elementos procesados,Tiempo Promedio[ms],STD Tiempo [ms] \n");
 
-for(int k=0;k<10;k++)     //este bucle es para cada valor de N[k]
+for(int k=0;k<8;k++)     //este bucle es para cada valor de N[k]
 {
 
 matrizA = (int **)malloc (N[k]*sizeof(int *));
