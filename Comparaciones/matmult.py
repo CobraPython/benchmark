@@ -8,7 +8,7 @@ t=[]
 N_rep=10;
 
 
-f=open('tiemposmatmultPY.csv','w',newline="")
+f=open('unix_tiemposmatmultPY.csv','w')
 wr=csv.writer(f,delimiter=',')
 wr.writerow(["# N elementos procesados", "Tiempo Promedio[ms]", "STD Tiempo [ms]", " #100 rep"])
 
