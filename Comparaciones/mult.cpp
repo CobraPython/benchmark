@@ -11,7 +11,7 @@
 
 
 
-int N[]={10,20,30,50,100,200,500,1000,1200,1500};  //N representa la dimension nxn de una matriz cuadrada
+int N[]={2,20,30,50,100,200,500,1000,1200,1500};  //N representa la dimension nxn de una matriz cuadrada
 
 
 int N_rep=10; //repeticiones para tener la estadística
@@ -65,7 +65,7 @@ double performancecounter_diff(LARGE_INTEGER *a, LARGE_INTEGER *b)
 
 int main()
 {
-fp = fopen ( "unix_tiemposmatmult.csv", "w" );    
+fp = fopen ( "tiemposmatmultC.csv", "w" );    
 fprintf(fp,"# N elementos procesados,Tiempo Promedio[ms],STD Tiempo [ms] \n");
 
 for(int k=0;k<10;k++)     //este bucle es para cada valor de N[k]
