@@ -38,7 +38,7 @@ double N[]={1.00000000e+05, 1.43844989e+05, 2.06913808e+05, 2.97635144e+05,
        4.28133240e+05, 6.15848211e+05, 8.85866790e+05, 1.27427499e+06,
        1.83298071e+06, 2.63665090e+06, 3.79269019e+06, 5.45559478e+06,
        7.84759970e+06, 1.12883789e+07, 1.62377674e+07, 2.33572147e+07,
-       3.35981829e+07, 4.83293024e+07, 6.95192796e+07, 1.00000000e+08};
+       3.35981829e+07, 4.83293024e+07};
 int N_rep=100;
 double temp[100];
 
@@ -79,7 +79,7 @@ fp = fopen ( "unix_tiemposCdotprod.csv", "w" );
 
 printf("# N elementos procesados,Tiempo Promedio[ms],STD Tiempo [ms] \n");
 fprintf(fp,"# N elementos procesados,Tiempo Promedio[ms],STD Tiempo [ms] \n");
- for(int i=0;i<20;i++)
+ for(int i=0;i<18;i++)
  {
  vectorA = (int*)malloc(N[i]*sizeof(int));
  vectorB = (int*)malloc(N[i]*sizeof(int));
