@@ -11,13 +11,13 @@
 
 
 
-double N[]={10,20,30,50,100,200,500,1000,1200,1500,2000};  //N representa la dimension nxn de una matriz cuadrada
+int N[]={10,20,30,50,100,200,500,1000,1200,1500};  //N representa la dimension nxn de una matriz cuadrada
 
 
-int N_rep=100; //repeticiones para tener la estadística
+int N_rep=10; //repeticiones para tener la estadística
 //    |
 //    | 
-double temp[100]; //Un vector que almacena los tiempos de cada repetición 
+double temp[10]; //Un vector que almacena los tiempos de cada repetición 
 //para luego obtener el promedio y la varianza
 
 //Se busca cuidar la gestión de memoria, por lo cual se necesita reservar 
@@ -42,13 +42,13 @@ int **matrizA;  //declaramos un puntero de punteros
 int **matrizB;
 int **matrizC;
 
-double promedio; 
-double varianza;
+float promedio; 
+float varianza;
 
 
 
 LARGE_INTEGER t_ini, t_fin;
-double secs;
+float secs;
 
 FILE *fp;
 
@@ -65,7 +65,7 @@ double performancecounter_diff(LARGE_INTEGER *a, LARGE_INTEGER *b)
 
 int main()
 {
-fp = fopen ( "tiemposmatmult.csv", "w" );    
+fp = fopen ( "unix_tiemposmatmult.csv", "w" );    
 fprintf(fp,"# N elementos procesados,Tiempo Promedio[ms],STD Tiempo [ms] \n");
 
 for(int k=0;k<10;k++)     //este bucle es para cada valor de N[k]
@@ -94,8 +94,8 @@ srand(time(NULL));
 int i,j;
 for(i=0;i<N[k];i++){
 for(j=0;j<N[k];j++){
-matrizA[i][j]= rand();
-matrizB[i][j]= rand();
+matrizA[i][j]= rand()%100;
+matrizB[i][j]= rand()%100;
 }
 }
 
@@ -118,13 +118,13 @@ for(int m=0;m<N_rep;m++)  // Este bucle es para hacer la estadistica con N_rep
 		}
 	}
   	 QueryPerformanceCounter(&t_fin);
-  	 free (matrizC);
+  
   	temp[m]= 1000*performancecounter_diff(&t_fin, &t_ini);  //*1000 para que el valor sea ms
  }
 
  free (matrizA);
  free (matrizB);
-
+ free (matrizC);
 
 secs=0;
 for(int j=0;j<N_rep;j++)
@@ -142,11 +142,8 @@ secs+=pow(temp[j]-promedio,2);
 
 varianza = sqrt(secs/(N_rep-1));   //calcula la varianza
 
-printf("%.0f,%.5f,%.5f\n",N[k],promedio,varianza);
-fprintf(fp,"%.0f,%.5f,%.5f\n",N[k],promedio,varianza);
-
+fprintf(fp,"%.0d,%.5f,%.5f\n",N[k],promedio,varianza);
 }
-
 fclose (fp);
 return 0;
 }
